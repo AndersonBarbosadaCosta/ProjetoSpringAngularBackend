@@ -3,17 +3,22 @@ package com.desafio.nextijr.testeJava.dto;
 import com.desafio.nextijr.testeJava.model.Produto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ProdutoDTO {
 
+    private Long id;
+    @NotBlank
     private String sku;
-
+    @NotBlank
     private String nome;
-
+    @NotBlank
     private String descricao;
-
+    @NotNull
     private Double preco;
-
+    @NotNull
     private int quantidade;
 
     public ProdutoDTO() {
@@ -65,5 +70,13 @@ public class ProdutoDTO {
 
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

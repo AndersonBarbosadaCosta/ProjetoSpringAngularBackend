@@ -55,7 +55,7 @@ public class ProdutoResource {
     public ResponseEntity<Void> update(@Valid @RequestBody ProdutoDTO objDto, @PathVariable Long id) {
         var produto = conversor.converterDtoParaEntidade(objDto);
         produto.setId(id);
-        this.service.atualizar(produto);
+        this.service.atualizar(produto,id);
         return ResponseEntity.noContent().build();
     }
 

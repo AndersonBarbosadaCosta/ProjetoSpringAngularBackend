@@ -3,7 +3,6 @@ package com.desafio.nextijr.testeJava.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -21,7 +20,6 @@ public class Cliente implements Serializable {
     private String nome;
 
     @NotBlank
-    @Size(max = 11)
     @Column(unique = true, nullable = false)
     private String cpf;
 

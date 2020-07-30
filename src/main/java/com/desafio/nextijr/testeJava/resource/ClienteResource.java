@@ -15,6 +15,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/clientes")
@@ -44,7 +45,7 @@ public class ClienteResource {
     @ApiOperation(value = "Insere cliente")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Void> inserir(@Valid @RequestBody ClienteDTO objDto) {
+    public ResponseEntity<Void> inserir(@RequestBody @Valid ClienteDTO objDto) {
         Cliente cliente = this.conversor.converterDtoParaEntidade(objDto);
         cliente = this.service.salvar(cliente);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cliente.getId()).toUri();
@@ -52,12 +53,11 @@ public class ClienteResource {
     }
 
     @ApiOperation(value = "Altera cliente")
-    @PutMapping(value = "/{id}")
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<Void> update(@Valid @RequestBody ClienteDTO objDto, @PathVariable Long id) {
+    public ResponseEntity<Void> update(@Valid @RequestBody ClienteDTO objDto, @PathVariable("id") Long id) {
         var cliente = conversor.converterDtoParaEntidade(objDto);
-        cliente.setId(id);
-        this.service.atualizar(cliente);
+        this.service.atualizar(cliente,id);
         return ResponseEntity.noContent().build();
     }
 

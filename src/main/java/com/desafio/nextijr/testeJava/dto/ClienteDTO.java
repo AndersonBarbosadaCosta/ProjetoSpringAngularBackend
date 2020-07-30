@@ -3,7 +3,9 @@ package com.desafio.nextijr.testeJava.dto;
 import com.desafio.nextijr.testeJava.model.Cliente;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -12,11 +14,12 @@ public class ClienteDTO {
     private static final long serialVersionUID = 1L;
 
     private Long id;
-    @NotEmpty(message = "Preenchimento obrigatório")
+    @NotBlank
     private String nome;
-    @NotEmpty(message = "Preenchimento obrigatório")
+    @NotBlank
+    @Size(min = 11, max = 11)
     private String cpf;
-    @NotEmpty(message = "Preenchimento obrigatório")
+    @NotNull
     private LocalDate dtNascimento;
 
     public ClienteDTO() {

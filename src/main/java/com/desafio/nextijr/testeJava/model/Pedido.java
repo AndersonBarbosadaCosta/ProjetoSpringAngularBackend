@@ -6,8 +6,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Pedido implements Serializable {
@@ -27,7 +27,7 @@ public class Pedido implements Serializable {
     private LocalDateTime dtPedido;
 
     @OneToMany(mappedBy = "pedido")
-    private List<ItemPedido> itens;
+    private Set<ItemPedido> itens;
 
     @ManyToOne
     private Cliente cliente;
@@ -64,11 +64,11 @@ public class Pedido implements Serializable {
         this.dtPedido = dtPedido;
     }
 
-    public List<ItemPedido> getItens() {
+    public Set<ItemPedido> getItens() {
         return itens;
     }
 
-    public void setItens(final List<ItemPedido> itens) {
+    public void setItens(final Set<ItemPedido> itens) {
         this.itens = itens;
     }
 

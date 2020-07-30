@@ -2,7 +2,7 @@ package com.desafio.nextijr.testeJava.service;
 
 import com.desafio.nextijr.testeJava.model.Cliente;
 import com.desafio.nextijr.testeJava.repository.ClienteRepository;
-import exception.ExecoesNegocio;
+import com.desafio.nextijr.testeJava.exception.ExcecoesNegocio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,7 +20,7 @@ public class ClienteService {
     public Cliente listarCliente(Long id) {
         var cliente = repository.findById(id);
 
-        return cliente.orElseThrow(() -> new ExecoesNegocio("Cliente não encontrado!"));
+        return cliente.orElseThrow(() -> new ExcecoesNegocio("Cliente não encontrado!"));
     }
 
     public List<Cliente> listarTodos() {
@@ -32,17 +32,17 @@ public class ClienteService {
         var existeCliente = this.repository.findByCpf(cliente.getCpf());
 
         if (existeCliente != null && !cliente.equals(cliente)) {
-            throw new ExecoesNegocio("Cpf já cadastrado! ");
+            throw new ExcecoesNegocio("Cpf já cadastrado! ");
         }
         return this.repository.save(cliente);
     }
 
-    public Cliente atualizar(Cliente cliente) {
+    public Cliente atualizar(Cliente cliente, Long id) {
 
-        var client = this.repository.findById(cliente.getId())
-                .orElseThrow(() -> new ExecoesNegocio("Cliente não encontrado!"));
-
-        return this.repository.save(client);
+        var clienteAtualizar = this.repository.findById(id)
+                .orElseThrow(() -> new ExcecoesNegocio("Cliente não encontrado!"));
+        cliente.setId(clienteAtualizar.getId());
+        return this.repository.save(cliente);
     }
 
     public void excluir(Long id) {
