@@ -2,7 +2,6 @@ package com.desafio.nextijr.testeJava.dto;
 
 import com.desafio.nextijr.testeJava.model.Cliente;
 
-import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 public class ClientePedidoDTO implements Serializable {
@@ -11,7 +10,6 @@ public class ClientePedidoDTO implements Serializable {
 
     private Long id;
 
-    @NotEmpty(message = "Preenchimento obrigatório")
     private String cpf;
 
     public ClientePedidoDTO() {
@@ -20,5 +18,21 @@ public class ClientePedidoDTO implements Serializable {
     public ClientePedidoDTO(Cliente cliente) {
         this.id = cliente.getId();
         this.cpf = cliente.getCpf();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 }

@@ -57,11 +57,12 @@ public class PedidoService {
         return this.pedidoRepository.findAll();
     }
 
-    public Pedido atualizar(Pedido pedido) {
+    public Pedido atualizar(Pedido pedido, Long id) {
 
-        var product = this.pedidoRepository.findById(pedido.getId())
+        var pedidoAtualizar = this.pedidoRepository.findById(id)
                 .orElseThrow(() -> new ExcecoesNegocio("Pedido não encontrado!"));
-        return this.pedidoRepository.save(pedido);
+        pedido.setId(pedidoAtualizar.getId());
+        return this.pedidoRepository.save(pedidoAtualizar);
     }
 
     public void excluir(Long id) {

@@ -5,12 +5,14 @@ import com.desafio.nextijr.testeJava.model.ItemPedido;
 import com.desafio.nextijr.testeJava.model.Pedido;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-public class PedidoDTO {
+public class PedidoDTO implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private Long id;
 

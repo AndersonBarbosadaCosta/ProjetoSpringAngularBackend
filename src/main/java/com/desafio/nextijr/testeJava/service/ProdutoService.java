@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -27,6 +28,7 @@ public class ProdutoService {
         return this.repository.findAll();
     }
 
+    @Transactional
     public Produto salvar(Produto produto) {
         var existeProduto = this.repository.findBySku(produto.getSku());
         if (existeProduto != null && !produto.equals(produto)) {

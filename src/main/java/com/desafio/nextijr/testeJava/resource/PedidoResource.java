@@ -55,7 +55,7 @@ public class PedidoResource {
     public ResponseEntity<Void> update(@Valid @RequestBody PedidoDTO objDto, @PathVariable Long id) {
         var pedido = conversor.converterDtoParaEntidade(objDto);
         pedido.setId(id);
-        this.service.atualizar(pedido);
+        this.service.atualizar(pedido, id);
         return ResponseEntity.noContent().build();
     }
 

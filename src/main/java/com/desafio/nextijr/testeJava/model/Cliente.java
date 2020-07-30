@@ -14,6 +14,7 @@ public class Cliente implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull(groups = ValidationGroups.ClientId.class)
     private Long id;
 
     @NotBlank
